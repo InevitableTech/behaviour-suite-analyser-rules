@@ -9,7 +9,8 @@ use Forceedge01\BDDStaticAnalyserRules\Entities\Scenario;
 use Forceedge01\BDDStaticAnalyserRules\Entities\Step;
 use Forceedge01\BDDStaticAnalyserRules\Entities\FeatureFileContents;
 
-interface RuleInterface {
+interface RuleInterface
+{
     public function setFeatureFileContents(FeatureFileContents $contents);
 
     public function setScenario(Scenario $scenario = null);

@@ -4,10 +4,12 @@ namespace Forceedge01\BDDStaticAnalyserRules\Rules;
 
 use Forceedge01\BDDStaticAnalyserRules\Entities;
 
-class NotTooManyExamplesPerScenario extends BaseRule {
+class NotTooManyExamplesPerScenario extends BaseRule
+{
     protected $violationMessage = 'To gain reasonable confidence in a feature %d examples usually suffice, got %d. More examples are usually a drain on performance of the wider pack.';
 
-    public function __construct(array $args) {
+    public function __construct(array $args)
+    {
         $this->maxCount = $args[0];
     }
 
@@ -15,7 +17,8 @@ class NotTooManyExamplesPerScenario extends BaseRule {
         Entities\Scenario $scenario,
         Entities\OutcomeCollection $collection
     ) {
-        // Examples block contains the placeholder ids as the first column, minus 1 to the total count to adjust for this.
+        // Examples block contains the placeholder ids as the first column, minus 1 to the total
+        // count to adjust for this.
         $examplesCount = count($scenario->examples) - 1;
 
         if ($examplesCount > $this->maxCount) {

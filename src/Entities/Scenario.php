@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Forceedge01\BDDStaticAnalyserRules\Entities;
 
 use Forceedge01\BDDStaticAnalyserRules\Processor;
@@ -17,15 +19,17 @@ class Scenario
         $this->steps = [];
     }
 
-    public function removePyStrings(array $scenario): array {
+    public function removePyStrings(array $scenario): array
+    {
         $pyString = Processor\ArrayProcessor::getContentBetween('/^\s*"""\s*$/', '/^\s*"""\s*$/', $scenario);
 
         return array_diff($scenario, $pyString);
     }
 
-    public function getSteps(): ?array {
+    public function getSteps(): array
+    {
         if (! $this->scenario) {
-            return null;
+            return [];
         }
 
         if ($this->steps) {
@@ -120,27 +124,33 @@ class Scenario
         return $this->steps;
     }
 
-    private function isComment(string $line): bool {
-        return preg_match('/^#.*/', $line);
+    private function isComment(string $line): bool
+    {
+        return (bool) preg_match('/^#.*/', $line);
     }
 
-    private function isPyStringBlock($line): bool {
+    private function isPyStringBlock($line): bool
+    {
         return $line === '"""';
     }
 
-    private function isExampleBlock($line): bool {
+    private function isExampleBlock($line): bool
+    {
         return $line === 'Examples:';
     }
 
-    private function isTabledOrPyStringedStep($line): bool {
+    private function isTabledOrPyStringedStep($line): bool
+    {
         return $this->isStepDefinition($line) && substr($line, -1) === ':';
     }
 
-    private function isTableBlock($line): bool {
+    private function isTableBlock($line): bool
+    {
         return strpos($line, '|') === 0;
     }
 
-    public function removeTagsAndScenarioFromSteps(): array {
+    public function removeTagsAndScenarioFromSteps(): array
+    {
         $tags = $this->getTags();
         $scenario = $this->scenario;
 
@@ -154,7 +164,8 @@ class Scenario
         return array_slice($scenario, 1, count($scenario));
     }
 
-    public function getActiveSteps(): array {
+    public function getActiveSteps(): array
+    {
         $steps = $this->getSteps();
 
         foreach ($steps as $index => $step) {
@@ -166,11 +177,13 @@ class Scenario
         return Processor\ArrayProcessor::cleanArray($steps);
     }
 
-    public function isStepDefinition(string $step): bool {
-        return preg_match('/^#?\s*(given|when|then|and|but)\s.*/i', trim($step));
+    public function isStepDefinition(string $step): bool
+    {
+        return (bool) preg_match('/^#?\s*(given|when|then|and|but)\s.*/i', trim($step));
     }
 
-    public function getExamples(array $scenario) {
+    public function getExamples(array $scenario): array
+    {
         if ($this->examples) {
             return $this->examples;
         }
@@ -192,11 +205,13 @@ class Scenario
         return $this->examples;
     }
 
-    public function getTitle(): string {
+    public function getTitle(): string
+    {
         return trim($this->getRawTitle());
     }
 
-    public function getRawTitle(): string {
+    public function getRawTitle(): string
+    {
         if (! $this->scenario) {
             return '';
         }
@@ -208,11 +223,13 @@ class Scenario
         return str_replace('Scenario:', '', $this->scenario[0]);
     }
 
-    public function getStepsCount(): int {
+    public function getStepsCount(): int
+    {
         return count($this->getSteps());
     }
 
-    public function getTags(): array {
+    public function getTags(): array
+    {
         preg_match('/^@.*/', trim($this->scenario[0]), $matches);
         if (count($matches) > 0) {
             return Processor\ArrayProcessor::cleanArray(explode(' ', $this->scenario[0]));

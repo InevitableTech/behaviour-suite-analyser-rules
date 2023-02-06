@@ -9,7 +9,8 @@ use Forceedge01\BDDStaticAnalyserRules\Entities\Scenario;
 use Forceedge01\BDDStaticAnalyserRules\Entities\Step;
 use Forceedge01\BDDStaticAnalyserRules\Entities\FeatureFileContents;
 
-abstract class BaseRule implements RuleInterface {
+abstract class BaseRule implements RuleInterface
+{
     protected $violationMessage = '';
 
     protected $code = '';
@@ -20,59 +21,72 @@ abstract class BaseRule implements RuleInterface {
 
     private $scenario = null;
 
-    public function reset() {
+    public function reset()
+    {
         $this->featureFileContents = null;
         $this->scenario = null;
 
         return $this;
     }
 
-    public function setFeatureFileContents(FeatureFileContents $contents) {
+    public function setFeatureFileContents(FeatureFileContents $contents)
+    {
         $this->featureFileContents = $contents;
     }
 
-    public function setScenario(Scenario $scenario = null) {
+    public function setScenario(Scenario $scenario = null)
+    {
         $this->scenario = $scenario;
     }
 
-    public function beforeApply(string $file, OutcomeCollection $collection) {
+    public function beforeApply(string $file, OutcomeCollection $collection)
+    {
         return null;
     }
 
-    public function applyOnFeature(FeatureFileContents $contents, OutcomeCollection $collection) {
+    public function applyOnFeature(FeatureFileContents $contents, OutcomeCollection $collection)
+    {
         return null;
     }
 
-    public function applyOnBackground(Background $background, OutcomeCollection $collection) {
+    public function applyOnBackground(Background $background, OutcomeCollection $collection)
+    {
         return null;
     }
 
-    public function beforeApplyOnScenario(Scenario $scenario, OutcomeCollection $collection) {
+    public function beforeApplyOnScenario(Scenario $scenario, OutcomeCollection $collection)
+    {
         return null;
     }
 
-    public function applyOnScenario(Scenario $scenario, OutcomeCollection $collection) {
+    public function applyOnScenario(Scenario $scenario, OutcomeCollection $collection)
+    {
         return null;
     }
 
-    public function afterApplyOnScenario(Scenario $scenario, OutcomeCollection $collection) {
+    public function afterApplyOnScenario(Scenario $scenario, OutcomeCollection $collection)
+    {
         $this->setScenario(null);
         return null;
     }
 
-    public function beforeApplyOnStep(Step $step, OutcomeCollection $collection) {
+    public function beforeApplyOnStep(Step $step, OutcomeCollection $collection)
+    {
         return null;
     }
 
-    public function applyOnStep(Step $step, OutcomeCollection $collection) {
+    public function applyOnStep(Step $step, OutcomeCollection $collection)
+    {
         return null;
     }
 
-    public function afterApplyOnStep(Step $step, OutcomeCollection $collection) {
+    public function afterApplyOnStep(Step $step, OutcomeCollection $collection)
+    {
         return null;
     }
 
-    public function applyAfterFeature(FeatureFileContents $contents, OutcomeCollection $collection) {
+    public function applyAfterFeature(FeatureFileContents $contents, OutcomeCollection $collection)
+    {
         return null;
     }
 
@@ -97,7 +111,8 @@ abstract class BaseRule implements RuleInterface {
         );
     }
 
-    protected function getScenarioOutcome(Scenario $scenario, string $message, int $outcome) {
+    protected function getScenarioOutcome(Scenario $scenario, string $message, int $outcome)
+    {
         return $this->getOutcomeObject(
             $scenario->lineNumber,
             $message,
@@ -106,7 +121,8 @@ abstract class BaseRule implements RuleInterface {
         );
     }
 
-    protected function getStepOutcome(Step $step, string $message, int $outcome) {
+    protected function getStepOutcome(Step $step, string $message, int $outcome)
+    {
         return $this->getOutcomeObject(
             $step->lineNumber,
             $message,

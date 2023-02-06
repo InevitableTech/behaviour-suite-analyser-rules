@@ -4,10 +4,12 @@ namespace Forceedge01\BDDStaticAnalyserRules\Rules;
 
 use Forceedge01\BDDStaticAnalyserRules\Entities;
 
-class NoScenarioWithoutDescription extends BaseRule {
+class NoScenarioWithoutDescription extends BaseRule
+{
     protected $violationMessage = 'Scenario without description, please add description for scenario.';
 
-    public function applyOnScenario(Entities\Scenario $scenario, Entities\OutcomeCollection $collection) {
+    public function applyOnScenario(Entities\Scenario $scenario, Entities\OutcomeCollection $collection)
+    {
         $title = $scenario->getTitle();
 
         if (! $title) {

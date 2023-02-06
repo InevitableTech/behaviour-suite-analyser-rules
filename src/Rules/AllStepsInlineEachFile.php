@@ -4,12 +4,14 @@ namespace Forceedge01\BDDStaticAnalyserRules\Rules;
 
 use Forceedge01\BDDStaticAnalyserRules\Entities;
 
-class AllStepsInlineEachFile extends BaseRule {
+class AllStepsInlineEachFile extends BaseRule
+{
     protected $violationMessage = 'Steps found with preceding spaces "%s", please ensure they are all inline.';
 
     protected $stepLengths = [];
 
-    public function applyOnStep(Entities\Step $step, Entities\OutcomeCollection $collection) {
+    public function applyOnStep(Entities\Step $step, Entities\OutcomeCollection $collection)
+    {
         $title = $step->getRawTitle();
         $trimmedTitle = ltrim($title);
         $lengthSpaces = strlen($title) - strlen($trimmedTitle);
@@ -18,7 +20,8 @@ class AllStepsInlineEachFile extends BaseRule {
         $this->stepLengths[$lengthSpaces] = $step;
     }
 
-    public function applyAfterFeature(Entities\FeatureFileContents $contents, Entities\OutcomeCollection $collection) {
+    public function applyAfterFeature(Entities\FeatureFileContents $contents, Entities\OutcomeCollection $collection)
+    {
         $spacesCount = count($this->stepLengths);
 
         if ($spacesCount > 1) {

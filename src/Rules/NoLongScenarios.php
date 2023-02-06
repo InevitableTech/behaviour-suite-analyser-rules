@@ -4,10 +4,12 @@ namespace Forceedge01\BDDStaticAnalyserRules\Rules;
 
 use Forceedge01\BDDStaticAnalyserRules\Entities;
 
-class NoLongScenarios extends BaseRule {
+class NoLongScenarios extends BaseRule
+{
     protected $violationMessage = 'This scenario is too long, consider reducing size to %d lines. The following tactics can be applied to reduce its size...';
 
-    public function __construct(array $args) {
+    public function __construct(array $args)
+    {
         $this->maxCount = $args[0];
     }
 

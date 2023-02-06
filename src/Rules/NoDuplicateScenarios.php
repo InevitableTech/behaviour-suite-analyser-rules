@@ -4,12 +4,14 @@ namespace Forceedge01\BDDStaticAnalyserRules\Rules;
 
 use Forceedge01\BDDStaticAnalyserRules\Entities;
 
-class NoDuplicateScenarios extends BaseRule {
+class NoDuplicateScenarios extends BaseRule
+{
     protected $violationMessage = 'Found a duplicate scenario "%s"';
 
     protected $scenarios = [];
 
-    public function applyOnScenario(Entities\Scenario $scenario, Entities\OutcomeCollection $collection) {
+    public function applyOnScenario(Entities\Scenario $scenario, Entities\OutcomeCollection $collection)
+    {
         $title = $scenario->getTitle();
         if (in_array($title, $this->scenarios)) {
             $collection->addOutcome($this->getOutcomeObject(

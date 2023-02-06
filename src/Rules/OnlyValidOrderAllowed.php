@@ -4,12 +4,14 @@ namespace Forceedge01\BDDStaticAnalyserRules\Rules;
 
 use Forceedge01\BDDStaticAnalyserRules\Entities;
 
-class OnlyValidOrderAllowed extends BaseRule {
+class OnlyValidOrderAllowed extends BaseRule
+{
     protected $violationMessage = 'Expected step to start with keyword "%s", got "%s" instead. Are you missing a "%s" step?';
 
     protected $violationMessage2 = 'Unexpected keyword %s found in step. Have you repeated steps?';
 
-    public function applyOnScenario(Entities\Scenario $scenario, Entities\OutcomeCollection $collection) {
+    public function applyOnScenario(Entities\Scenario $scenario, Entities\OutcomeCollection $collection)
+    {
         $steps = $scenario->getActiveSteps();
 
         if (! $steps) {

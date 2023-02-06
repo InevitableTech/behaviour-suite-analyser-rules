@@ -4,10 +4,12 @@ namespace Forceedge01\BDDStaticAnalyserRules\Rules;
 
 use Forceedge01\BDDStaticAnalyserRules\Entities;
 
-class NoScenarioWithoutAssertion extends BaseRule {
+class NoScenarioWithoutAssertion extends BaseRule
+{
     protected $violationMessage = 'Expected to find "Then" step in scenario "%s", are you missing assertions?';
 
-    public function applyOnScenario(Entities\Scenario $scenario, Entities\OutcomeCollection $collection) {
+    public function applyOnScenario(Entities\Scenario $scenario, Entities\OutcomeCollection $collection)
+    {
         $steps = $scenario->getActiveSteps();
 
         foreach ($steps as $index => $step) {

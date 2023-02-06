@@ -4,7 +4,8 @@ namespace Forceedge01\BDDStaticAnalyserRules\Rules;
 
 use Forceedge01\BDDStaticAnalyserRules\Entities;
 
-class NoUrlInSteps extends BaseRule {
+class NoUrlInSteps extends BaseRule
+{
     protected $violationMessage = 'Hardcoded url found, should be abstracted.';
 
     public function applyOnStep(

@@ -1,8 +1,11 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Forceedge01\BDDStaticAnalyserRules\Entities;
 
-class Outcome {
+class Outcome
+{
     // Informational.
     const LOW = 0;
 
@@ -44,7 +47,8 @@ class Outcome {
         $this->uniqueScenarioId = $file . ':' . $lineNumber;
     }
 
-    public function getRuleShortName(): string {
+    public function getRuleShortName(): string
+    {
         $shortName = explode('\\', $this->rule);
         return end($shortName);
     }

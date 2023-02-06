@@ -1,8 +1,11 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Forceedge01\BDDStaticAnalyserRules\Entities;
 
-class OutcomeCollection extends Collection {
+class OutcomeCollection extends Collection
+{
     public $summary = [
         'files' => null,
         'backgrounds' => null,
@@ -11,19 +14,23 @@ class OutcomeCollection extends Collection {
         'activeRules' => null
     ];
 
-    public function setItems(array $items) {
+    public function setItems(array $items)
+    {
         $this->items = $items;
     }
 
-    public function addOutcome(Outcome $item) {
+    public function addOutcome(Outcome $item)
+    {
         $this->add($item);
     }
 
-    public function addSummary(string $category, string $id) {
+    public function addSummary(string $category, string $id)
+    {
         $this->summary[$category][$id] = $id;
     }
 
-    public function getSummaryCount($key) {
+    public function getSummaryCount($key)
+    {
         if (! isset($this->summary[$key])) {
             return 0;
         }

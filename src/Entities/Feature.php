@@ -1,15 +1,20 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Forceedge01\BDDStaticAnalyserRules\Entities;
 
 use Forceedge01\BDDStaticAnalyserRules\Processor;
 
-class Feature {
-    public function __construct(array $content) {
+class Feature
+{
+    public function __construct(array $content)
+    {
         $this->content = $content;
     }
 
-    public function getTags(): array {
+    public function getTags(): array
+    {
         if (! isset($this->content[0])) {
             return [];
         }
@@ -22,7 +27,8 @@ class Feature {
         return [];
     }
 
-    public function getNarrative(): array {
+    public function getNarrative(): array
+    {
         $featureIndex = Processor\ArrayProcessor::getIndexMatching('/^Feature:/', $this->content);
 
         if ($featureIndex === null) {
@@ -32,7 +38,8 @@ class Feature {
         return Processor\ArrayProcessor::cleanArray(array_slice($this->content, $featureIndex+1));
     }
 
-    public function getDescription(): string {
+    public function getDescription(): string
+    {
         $description = Processor\ArrayProcessor::getContentMatching('/^Feature:/', $this->content);
 
         return trim(str_replace('Feature:', $description));

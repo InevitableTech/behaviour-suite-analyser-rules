@@ -4,11 +4,13 @@ namespace Forceedge01\BDDStaticAnalyserRules\Rules;
 
 use Forceedge01\BDDStaticAnalyserRules\Entities;
 
-class NoConjunctionInSteps extends BaseRule {
+class NoConjunctionInSteps extends BaseRule
+{
     protected $violationMessage = 'Found "%s" in step "%s" language, conjunctions indicate hidden complexity in steps and are discouraged. This also makes the step definition complex to maintain and less definitive. Consider splitting the step in 2 or more.';
     const REASON = '';
 
-    public function applyOnStep(Entities\Step $step, Entities\OutcomeCollection $collection) {
+    public function applyOnStep(Entities\Step $step, Entities\OutcomeCollection $collection)
+    {
         $stepDefinition = $step->getStepDefinition();
 
         if (preg_match('/.+\s(and|if|or)\s.+/', $stepDefinition, $match)) {

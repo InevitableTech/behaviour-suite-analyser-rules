@@ -4,14 +4,17 @@ namespace Forceedge01\BDDStaticAnalyserRules\Rules;
 
 use Forceedge01\BDDStaticAnalyserRules\Entities;
 
-class MinimumLengthScenario extends BaseRule {
+class MinimumLengthScenario extends BaseRule
+{
     protected $violationMessage = 'Expected scenario to have a minimum of %d steps in scenario, got %d.';
 
-    public function __construct(array $options) {
+    public function __construct(array $options)
+    {
         $this->minimumLength = $options[0];
     }
 
-    public function applyOnScenario(Entities\Scenario $scenario, Entities\OutcomeCollection $collection) {
+    public function applyOnScenario(Entities\Scenario $scenario, Entities\OutcomeCollection $collection)
+    {
         $steps = $scenario->getActiveSteps();
 
         if (count($steps) < $this->minimumLength) {
