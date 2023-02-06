@@ -3,7 +3,10 @@
 namespace Forceedge01\BDDStaticAnalyserRules\Entities;
 
 class Config {
-    const DEFAULT_PATH = __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR;
+    const DEFAULT_PATH = __DIR__ .
+        DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..' .
+        DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..' .
+        DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR;
     const DEFAULT_NAME = 'bdd-analyser-config.php';
 
     public function __construct(string $path) {
