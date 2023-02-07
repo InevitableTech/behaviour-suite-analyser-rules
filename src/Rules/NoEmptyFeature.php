@@ -14,7 +14,7 @@ class NoEmptyFeature extends BaseRule
 
         if (count($scenariosCount) === 0) {
             $collection->addOutcome($this->getOutcomeObject(
-                1,
+                $contents->feature->lineNumber,
                 sprintf($this->violationMessage, $contents->filePath),
                 Entities\Outcome::SERIOUS
             ));

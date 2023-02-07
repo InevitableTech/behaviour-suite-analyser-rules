@@ -8,8 +8,9 @@ use Forceedge01\BDDStaticAnalyserRules\Processor;
 
 class Feature
 {
-    public function __construct(array $content)
+    public function __construct(int $lineNumber, array $content)
     {
+        $this->lineNumber = $lineNumber;
         $this->content = $content;
     }
 

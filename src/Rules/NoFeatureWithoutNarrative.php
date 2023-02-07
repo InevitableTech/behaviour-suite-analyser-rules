@@ -14,7 +14,7 @@ class NoFeatureWithoutNarrative extends BaseRule
 
         if (! $narrative) {
             $collection->addOutcome($this->getOutcomeObject(
-                1,
+                $contents->feature->lineNumber,
                 $this->violationMessage,
                 Entities\Outcome::SERIOUS
             ));
