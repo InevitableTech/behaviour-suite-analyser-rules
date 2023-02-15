@@ -27,6 +27,6 @@ class ConfigTest extends TestCase
     {
         $result = $this->testObject->getPath('path');
 
-        self::assertSame('/app/tests/unit/src/Entities/ScenarioTest.php', $result);
+        self::assertSame(__DIR__ . '/ScenarioTest.php', $result);
     }
 }
