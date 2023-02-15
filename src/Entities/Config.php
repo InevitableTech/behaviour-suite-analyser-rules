@@ -10,22 +10,26 @@ class Config
         DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..' .
         DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..' .
         DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR;
-    const DEFAULT_NAME = 'bdd-analyser-config.php';
+    const DEFAULT_NAME = 'bdd-analyser-config.yaml';
 
-    public function __construct(string $path)
+    public function __construct(string $path, array $data)
     {
-        $this->path = $this->getValidConfigPath($path);
-
-        $this->data = include $this->path;
+        $this->path = $path;
+        $this->data = $data;
     }
 
     public function get($key, $default = null)
     {
-        if (isset($this->data[$key])) {
-            return $this->data[$key];
+        if (isset($this->data['config'][$key])) {
+            return $this->data['config'][$key];
         }
 
         return $default;
+    }
+
+    public function getPath($key): string
+    {
+        return str_replace('<relative_path>', dirname($this->path), $this->get($key));
     }
 
     public function print(): void
@@ -33,7 +37,7 @@ class Config
         print_r($this->data);
     }
 
-    private function getValidConfigPath(string $path): string
+    public static function getValidConfigPath(string $path): string
     {
         if (is_dir($path)) {
             $path .= DIRECTORY_SEPARATOR . self::DEFAULT_NAME;
