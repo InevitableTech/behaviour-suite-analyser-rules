@@ -19,6 +19,7 @@ class NoLongScenarios extends BaseRule
     ) {
         if ($scenario->getStepsCount() > $this->maxCount) {
             $collection->addOutcome($this->getOutcomeObject(
+                self::TYPE_GENERAL,
                 $scenario->lineNumber,
                 sprintf($this->violationMessage, $this->maxCount),
                 Entities\Outcome::CRITICAL,

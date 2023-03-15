@@ -17,6 +17,7 @@ class DiscouragedTags extends BaseRule
 
         if ($intersect) {
             $collection->addOutcome($this->getOutcomeObject(
+                self::TYPE_TAG,
                 1,
                 sprintf($this->violationMessage, implode(', ', $intersect)),
                 Entities\Outcome::HIGH,
@@ -32,6 +33,7 @@ class DiscouragedTags extends BaseRule
 
         if ($intersect) {
             $collection->addOutcome($this->getOutcomeObject(
+                self::TYPE_TAG,
                 $scenario->lineNumber,
                 sprintf($this->violationMessage, implode(', ', $intersect)),
                 Entities\Outcome::HIGH,

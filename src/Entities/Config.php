@@ -18,7 +18,7 @@ class Config
         $this->data = $data;
     }
 
-    public function get(string $key, $default = null): mixed
+    public function get($key, $default = null)
     {
         if (isset($this->data['config'][$key])) {
             return $this->data['config'][$key];
@@ -27,7 +27,7 @@ class Config
         return $default;
     }
 
-    public function getPath(string $key): string
+    public function getPath($key): string
     {
         return str_replace('<relative_path>', dirname($this->path), $this->get($key));
     }

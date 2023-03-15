@@ -11,6 +11,12 @@ use Forceedge01\BDDStaticAnalyserRules\Entities\FeatureFileContents;
 
 abstract class BaseRule implements RuleInterface
 {
+    const TYPE_SCENARIO = 'scenario';
+    const TYPE_STEP = 'step';
+    const TYPE_FEATURE = 'feature';
+    const TYPE_TAG = 'tag';
+    const TYPE_GENERAL = 'general';
+
     protected $violationMessage = '';
 
     protected $code = '';
@@ -91,6 +97,7 @@ abstract class BaseRule implements RuleInterface
     }
 
     public function getOutcomeObject(
+        string $type,
         int $lineNumber,
         string $message,
         string $severity,
@@ -99,12 +106,14 @@ abstract class BaseRule implements RuleInterface
         string $cleanStep = null
     ): Outcome {
         return new Outcome(
+            $type,
             static::class,
             $this->featureFileContents->filePath,
             $lineNumber,
             $message,
             $severity,
             $this->scenario ? $this->scenario->getTitle() : null,
+            $this->scenario ? $this->scenario->lineNumber : null,
             $violatingLine,
             $rawStep,
             $cleanStep
@@ -114,6 +123,7 @@ abstract class BaseRule implements RuleInterface
     protected function getScenarioOutcome(Scenario $scenario, string $message, int $outcome)
     {
         return $this->getOutcomeObject(
+            self::TYPE_SCENARIO,
             $scenario->lineNumber,
             $message,
             $outcome,
@@ -124,6 +134,7 @@ abstract class BaseRule implements RuleInterface
     protected function getStepOutcome(Step $step, string $message, int $outcome)
     {
         return $this->getOutcomeObject(
+            self::TYPE_STEP,
             $step->lineNumber,
             $message,
             $outcome,
