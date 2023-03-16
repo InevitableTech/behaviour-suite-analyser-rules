@@ -23,6 +23,7 @@ class NotTooManyExamplesPerScenario extends BaseRule
 
         if ($examplesCount > $this->maxCount) {
             $collection->addOutcome($this->getOutcomeObject(
+                self::TYPE_SCENARIO,
                 $scenario->lineNumber,
                 sprintf($this->violationMessage, $this->maxCount, $examplesCount),
                 Entities\Outcome::HIGH

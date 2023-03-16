@@ -26,6 +26,7 @@ class AllScenariosInlineEachFile extends BaseRule
 
         if ($spacesCount > 1) {
             $collection->addOutcome($this->getOutcomeObject(
+                self::TYPE_GENERAL,
                 1,
                 sprintf($this->violationMessage, implode(', ', array_keys($this->scenarioLengths))),
                 Entities\Outcome::LOW
