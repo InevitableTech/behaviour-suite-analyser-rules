@@ -18,6 +18,7 @@ class NotTooManyScenariosPerFeature extends BaseRule
         $scenariosCount = $contents->scenarios;
         if (count($scenariosCount) > $this->maxCount) {
             $collection->addOutcome($this->getOutcomeObject(
+                self::TYPE_GENERAL,
                 1,
                 sprintf($this->violationMessage, $contents->filePath, $this->maxCount, $scenariosCount),
                 Entities\Outcome::MEDIUM

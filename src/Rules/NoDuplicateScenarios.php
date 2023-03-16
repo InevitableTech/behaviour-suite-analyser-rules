@@ -15,10 +15,11 @@ class NoDuplicateScenarios extends BaseRule
         $title = $scenario->getTitle();
         if (in_array($title, $this->scenarios)) {
             $collection->addOutcome($this->getOutcomeObject(
+                self::TYPE_SCENARIO,
                 $scenario->lineNumber,
                 sprintf($this->violationMessage, $title),
                 Entities\Outcome::LOW,
-                'Scenario: ' . $title
+                'Scenario: ' . $title,
             ));
         }
 

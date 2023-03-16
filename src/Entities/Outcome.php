@@ -25,21 +25,25 @@ class Outcome
     const DEV = 99;
 
     public function __construct(
+        string $type,
         string $rule,
         string $file,
         int $lineNumber,
         string $message,
         string $severity,
         string $scenario = null,
+        int $scenarioLineNumber = null,
         string $violatingLine = null,
         string $rawStep = null,
         string $cleanStep = null
     ) {
+        $this->type = $type;
         $this->rule = $rule;
         $this->file = $file;
         $this->lineNumber = $lineNumber;
         $this->severity = $severity;
         $this->scenario = $scenario;
+        $this->scenarioLineNumber = $scenarioLineNumber;
         $this->violatingLine = $violatingLine;
         $this->rawStep = $rawStep;
         $this->message = $message;

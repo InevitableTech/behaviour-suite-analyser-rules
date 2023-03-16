@@ -26,6 +26,7 @@ class AllStepsInlineEachFile extends BaseRule
 
         if ($spacesCount > 1) {
             $collection->addOutcome($this->getOutcomeObject(
+                self::TYPE_GENERAL,
                 1,
                 sprintf($this->violationMessage, implode(', ', array_keys($this->stepLengths))),
                 Entities\Outcome::LOW
