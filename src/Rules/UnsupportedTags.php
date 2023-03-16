@@ -20,7 +20,7 @@ class UnsupportedTags extends BaseRule
 
         if ($intersect) {
             $collection->addOutcome($this->getOutcomeObject(
-                self::TYPE_TAG,
+                self::TYPE_FEATURE,
                 1,
                 sprintf($this->violationMessage, implode(', ', $intersect)),
                 Entities\Outcome::MEDIUM,
@@ -36,7 +36,7 @@ class UnsupportedTags extends BaseRule
 
         if ($intersect) {
             $collection->addOutcome($this->getOutcomeObject(
-                self::TYPE_TAG,
+                self::TYPE_SCENARIO,
                 $scenario->lineNumber,
                 sprintf($this->violationMessage, implode(', ', $intersect)),
                 Entities\Outcome::MEDIUM,

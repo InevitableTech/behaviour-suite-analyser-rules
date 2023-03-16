@@ -14,7 +14,6 @@ abstract class BaseRule implements RuleInterface
     const TYPE_SCENARIO = 'scenario';
     const TYPE_STEP = 'step';
     const TYPE_FEATURE = 'feature';
-    const TYPE_TAG = 'tag';
     const TYPE_GENERAL = 'general';
 
     protected $violationMessage = '';
