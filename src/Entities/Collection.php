@@ -10,6 +10,8 @@ class Collection
 
     public function add($item): void
     {
+        $id = count($this->items) + 1;
+        $item->id = $id;
         $this->items[] = $item;
     }
 

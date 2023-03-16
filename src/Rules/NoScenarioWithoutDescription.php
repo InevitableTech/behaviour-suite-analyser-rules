@@ -14,6 +14,7 @@ class NoScenarioWithoutDescription extends BaseRule
 
         if (! $title) {
             $collection->addOutcome($this->getOutcomeObject(
+                self::TYPE_SCENARIO,
                 $scenario->lineNumber,
                 $this->violationMessage,
                 Entities\Outcome::LOW
