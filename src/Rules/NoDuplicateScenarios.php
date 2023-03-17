@@ -19,7 +19,7 @@ class NoDuplicateScenarios extends BaseRule
                 $scenario->lineNumber,
                 sprintf($this->violationMessage, $title),
                 Entities\Outcome::LOW,
-                'Scenario: ' . $title,
+                'Scenario: ' . $title
             ));
         }
 
