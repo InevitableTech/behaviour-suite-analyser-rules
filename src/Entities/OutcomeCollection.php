@@ -24,9 +24,17 @@ class OutcomeCollection extends Collection
         $this->add($item);
     }
 
-    public function addSummary(string $category, string $id)
+    public function addSummary(string $category, string $id, $count = false)
     {
-        $this->summary[$category][$id] = $id;
+        if ($count) {
+            if (!isset($this->summary[$category][$id])) {
+                $this->summary[$category][$id] = 1;
+            } else {
+                $this->summary[$category][$id] += 1;
+            }
+        } else {
+            $this->summary[$category][$id] = $id;
+        }
     }
 
     public function getSummary(string $key)
